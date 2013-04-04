@@ -48,7 +48,7 @@ function ShowSettings() {
         // 登录页
         $('.login_right dl').after(
             '<input type="checkbox" name="auto_login" />' +
-            '<label for="auto_login">以后自动登录</label>'
+            '<label for="auto_login">以后自动填写</label>'
         );
         if (user.is_autologin) {
             $('input[name=auto_login]').attr({checked: 'checked'});
@@ -208,6 +208,19 @@ function FillCaptcha()
     });
 }
 
+function FillUserName() {
+    if (!default2.test(url)) return;
+    if (!user.need_setup && user.is_autologin) {
+        document.getElementById("TextBox1").value = user.name;
+        document.getElementById("TextBox2").value = user.password;
+        setTimeout(function() {
+            var tb3 = document.getElementById("TextBox3");
+            tb3.value = "";
+            tb3.focus();
+        }, 2000);
+    }
+}
+
 
 //教学质量评价
 function AutoRank(){
@@ -299,6 +312,7 @@ function init() {
     LoadSettings();
     ShowSettings();
     // FillCaptcha();
+    FillUserName();
     ShowAvgPoint();
     AutoRank();
     SaveSettings();
