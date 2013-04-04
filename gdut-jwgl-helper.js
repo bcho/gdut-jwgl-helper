@@ -298,7 +298,7 @@ function init() {
     ErrorPage();
     LoadSettings();
     ShowSettings();
-    FillCaptcha();
+    // FillCaptcha();
     ShowAvgPoint();
     AutoRank();
     SaveSettings();
