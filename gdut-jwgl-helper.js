@@ -106,8 +106,14 @@ var GPA = {
 GPA.init = function() {
     if (!xscj.test(url))
         return;
+    GPA.selectYear();
     this.table = $("#DataGrid1");
     this.rows = $('tr',this.table);
+
+    // 点击按学期查询
+    if (this.rows.length === 0) {
+        $('#Button1').click();
+    }
 
     var tb = $('tbody')[0];
     var lastrow = document.createElement('tr');
@@ -250,6 +256,12 @@ GPA.calculate = function() {
     this.avgScore = avgScore;
     this.avgGPA = avgGPA;
     this.wAvgScore = wAvgScore;
+};
+
+// 选择当前年份
+GPA.selectYear = function () {
+    $('option[value="2013-2014"]').attr('selected', 'selected');
+    $('option[value="1"]').attr('selected', 'selected');
 };
 
 // 显示平均绩点和平均分
